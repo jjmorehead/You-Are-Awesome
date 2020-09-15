@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    var imageNumber = 1
+    var imageNumber = 0
     var messageNumber = 0
-    
+    let totalNumberOfImages = 5
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,9 +23,23 @@ class ViewController: UIViewController {
 
 
     @IBAction func messageButtonPressed(_ sender: UIButton) {
-        let messages = ["Awesome", "Great", "Fantastic", "Fabulous"]
+        let messages = ["Awesome", "Great", "Fantastic", "Fabulous", "Amazing", "Supurb"]
         
-        messageLabel.text = messages[messageNumber]
+        
+        var newMessage = messages[Int.random(in: 0...messages.count-1)]
+        
+        while messageLabel.text == newMessage {
+            print("We have a repeating value! *** Rerandomizing")
+            newMessage = messages[Int.random(in: 0...messages.count-1)]
+        }
+        messageLabel.text = newMessage
+        
+        
+        imageView.image = UIImage(named: "image\(Int.random(in: 0...totalNumberOfImages))")
+        
+        
+        
+/*        messageLabel.text = messages[messageNumber]
         messageNumber += 1
         if messageNumber == messages.count {
             messageNumber = 0
@@ -41,7 +55,7 @@ class ViewController: UIViewController {
             imageNumber = 0
         }
         
-
+*/
 //        let awesomeMessage = "You Are Awesome!"
 //        let greatMessage = "You Are Great!"
 //        let daMessage = "You Are Da Bomb!"
